@@ -4,8 +4,8 @@ import MealItem from "../components/MealItem";
 
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 
-const CategoryMealScreen = (props) => {
-  const categoryId = props.navigation.getParam("categoryId");
+const CategoryMealScreen = ({ route, navigation }) => {
+  const categoryId = route.params.categoryId;
 
   const filteredMeals = MEALS.filter(
     (meal) => meal.categoryIds.indexOf(categoryId) >= 0
@@ -20,10 +20,11 @@ const CategoryMealScreen = (props) => {
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
         onSelect={() => {
-          props.navigation.navigate({
-            routeName: "MealDetail",
+          navigation.navigate({
+            name: "MealDetail",
             params: {
               mealId: itemData.item.id,
+              mealTitle: itemData.item.title,
             },
           });
         }}
@@ -44,6 +45,7 @@ const CategoryMealScreen = (props) => {
 };
 
 CategoryMealScreen.navigationOptions = (navigationData) => {
+  console.log(navigationData);
   const categoryId = navigationData.navigation.getParam("categoryId");
 
   const selectedCategory = CATEGORIES.find(
