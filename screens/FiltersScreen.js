@@ -7,7 +7,7 @@ import HeaderButton from "../components/HeaderButton";
 const FiltersScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: "Your Favorite",
+      title: "Filters",
       headerLeft: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item

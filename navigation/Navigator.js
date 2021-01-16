@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -24,6 +24,12 @@ const MealStackNavigator = () => {
           backgroundColor: Colors.primary,
         },
         headerTintColor: "#000",
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
+        headerBackTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
       }}
     >
       <Stack.Screen name="Categories">
@@ -46,6 +52,9 @@ const FavoriteStackNavigator = () => {
         headerStyle: {
           backgroundColor: Colors.secondary,
         },
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
         headerTintColor: "#fff",
       }}
     >
@@ -63,7 +72,10 @@ const FiltersStackNavigator = () => {
         headerStyle: {
           backgroundColor: Colors.primary,
         },
-        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
+        headerTintColor: "#000",
       }}
     >
       <Stack.Screen name="Filters">
@@ -94,7 +106,12 @@ const TabNavigator = () => {
         name="Meals"
         component={MealStackNavigator}
         options={{
-          tabBarLabel: "Meals",
+          tabBarLabel:
+            Platform.OS === "android" && Platform.Version >= 21 ? (
+              <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+            ) : (
+              "Meals"
+            ),
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-restaurant" color={color} size={25} />
           ),
@@ -105,7 +122,12 @@ const TabNavigator = () => {
         name="Favorite"
         component={FavoriteStackNavigator}
         options={{
-          tabBarLabel: "Favorite",
+          tabBarLabel:
+            Platform.OS === "android" && Platform.Version >= 21 ? (
+              <Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
+            ) : (
+              "Favorites"
+            ),
           tabBarIcon: ({ color }) => (
             <Ionicons name="ios-star" color={color} size={25} />
           ),
