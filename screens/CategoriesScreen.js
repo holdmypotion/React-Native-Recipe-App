@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList } from "react-native";
 import CategoryGridTile from "../components/CategoryGridTile";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
